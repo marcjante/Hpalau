@@ -1,1 +1,139 @@
+# ============================================
+# HPalau - Archivos a ignorar
+# ============================================
 
+# ===== DEPENDENCIAS =====
+node_modules/
+.vscode/
+.idea/
+
+# ===== SISTEMA OPERATIVO =====
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+*.sublime-*
+
+# ===== LOGS =====
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# ===== RUNTIME =====
+*.pid
+*.seed
+*.pid.lock
+*.pem
+
+# ===== ENTORNO VIRTUAL =====
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ===== EDITORES =====
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
+
+# ===== SALIDA DE COMPILACIÓN =====
+dist/
+build/
+out/
+.cache/
+.temp/
+.tmp/
+
+# ===== ARCHIVOS GENERADOS =====
+*.pdf
+*.tmp
+*.temp
+
+# ===== PAQUETES =====
+*.tgz
+*.zip
+
+# ===== TEST COVERAGE =====
+coverage/
+.nyc_output
+
+# ===== MÓDULOS NATIVOS =====
+*.node
+
+# ===== ARCHIVOS DE USUARIO =====
+downloads/
+exports/
+
+# ===== CONFIGURACIONES VARIAS =====
+*.sublime-project
+*.sublime-workspace
+
+# ===== REGISTROS DE DEPURACIÓN =====
+debug.log
+
+# ===== CACHÉ DE CHROME =====
+.local-chromium/
+
+# ===== CONFIGURACIONES ESPECÍFICAS DEL PROYECTO =====
+# Archivos de configuración personalizados
+config.json
+settings.json
+
+# ===== ARCHIVOS DE SISTEMA =====
+.DocumentRevisions-V100
+.fseventsd
+.SyncService
+.SyncedResources
+.SyncResults
+.apdisk
+.MobileBackups
+.VolumeIcon.icns
+
+# ===== ARCHIVOS DE META =====
+.project
+.classpath
+.settings/
+*.jar
+
+# ===== ARCHIVOS DE MÁQUINA WINDOWS =====
+[Hh]elp
+[Pp]ackages
+[Ss]tore/
+[Tt]humbs/
+[Ww]indows*
+Win*
+[Ww]in*
+
+# ===== ARCHIVOS DE MÁQUINA LINUX =====
+*~
+
+# ===== ARCHIVOS DE MÁQUINA MAC =====
+.AppleDouble
+.LSOverride
+.Trash
+.Trashes
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.com.apple.timemachine.supported
+.hidden
+
+# ===== EXCEPCIONES =====
+!.gitkeep
+!.gitignore
+!README.md
+!LICENSE
