@@ -1,1 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gestor de Partidos de Hockey</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1><i class="fas fa-hockey-puck"></i> Gestor de Partidos de Hockey</h1>
+      <div class="progress-indicator">
+        <div class="progress-step active" data-step="1" title="Configurar equipo"></div>
+        <div class="progress-step" data-step="2" title="Jugadores activos"></div>
+        <div class="progress-step" data-step="3" title="Partido"></div>
+      </div>
+    </header>
+
+    <nav class="tabs">
+      <div class="tab active" data-step="1">
+        <i class="fas fa-users"></i> Configurar equipo
+      </div>
+      <div class="tab disabled" data-step="2">
+        <i class="fas fa-user-check"></i> Jugadores activos
+      </div>
+      <div class="tab disabled" data-step="3">
+        <i class="fas fa-play-circle"></i> Partido
+      </div>
+    </nav>
+
+    <!-- Paso 1: Configurar equipo -->
+    <section id="step-1" class="card step-card">
+      <h2 class="section-title">
+        <i class="fas fa-flag"></i> Equipo Local
+      </h2>
+      <p class="subtitle">Introduce el nombre del equipo y personaliza porteros y jugadores.</p>
+
+      <div class="team-setup-card">
+        <div class="team-header">
+          <h3 class="team-block-title">
+            <i class="fas fa-home"></i> Equipo Local
+          </h3>
+        </div>
+
+        <div class="form-group">
+          <label for="local-name" class="form-label">
+            <i class="fas fa-tag"></i> Nombre del equipo
+          </label>
+          <input id="local-name" type="text" class="form-input" 
+                 placeholder="Ej: Leones del Norte" required>
+          <div class="form-hint">Este nombre aparecerá en el PDF final</div>
+        </div>
+
+        <div class="section-divider">
+          <span>Porteros (2) - Opcional</span>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="local-gk1" class="form-label">
+              <i class="fas fa-shield-alt"></i> Portero 1
+            </label>
+            <input id="local-gk1" type="text" class="form-input" 
+                   placeholder="Nombre del portero 1">
+          </div>
+          <div class="form-group">
+            <label for="local-gk2" class="form-label">
+              <i class="fas fa-shield-alt"></i> Portero 2
+            </label>
+            <input id="local-gk2" type="text" class="form-input" 
+                   placeholder="Nombre del portero 2">
+          </div>
+        </div>
+
+        <div class="section-divider">
+          <span>Jugadores de pista (8) - Opcional</span>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="local-p1" class="form-label">Jugador 1</label>
+            <input id="local-p1" type="text" class="form-input" placeholder="Nombre jugador 1">
+          </div>
+          <div class="form-group">
+            <label for="local-p2" class="form-label">Jugador 2</label>
+            <input id="local-p2" type="text" class="form-input" placeholder="Nombre jugador 2">
+          </div>
+          <div class="form-group">
+            <label for="local-p3" class="form-label">Jugador 3</label>
+            <input id="local-p3" type="text" class="form-input" placeholder="Nombre jugador 3">
+          </div>
+          <div class="form-group">
+            <label for="local-p4" class="form-label">Jugador 4</label>
+            <input id="local-p4" type="text" class="form-input" placeholder="Nombre jugador 4">
+          </div>
+          <div class="form-group">
+            <label for="local-p5" class="form-label">Jugador 5</label>
+            <input id="local-p5" type="text" class="form-input" placeholder="Nombre jugador 5">
+          </div>
+          <div class="form-group">
+            <label for="local-p6" class="form-label">Jugador 6</label>
+            <input id="local-p6" type="text" class="form-input" placeholder="Nombre jugador 6">
+          </div>
+          <div class="form-group">
+            <label for="local-p7" class="form-label">Jugador 7</label>
+            <input id="local-p7" type="text" class="form-input" placeholder="Nombre jugador 7">
+          </div>
+          <div class="form-group">
+            <label for="local-p8" class="form-label">Jugador 8</label>
+            <input id="local-p8" type="text" class="form-input" placeholder="Nombre jugador 8">
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button id="clear-step1" class="btn btn-secondary">
+            <i class="fas fa-eraser"></i> Limpiar
+          </button>
+          <button id="to-step-2" class="btn btn-primary">
+            Siguiente <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Paso 2: Jugadores activos -->
+    <section id="step-2" class="card step-card hidden">
+      <h2 class="section-title">
+        <i class="fas fa-user-check"></i> Jugadores activos
+      </h2>
+      <p class="subtitle">
+        Selecciona <strong>1 portero</strong> y <strong>4 jugadores</strong> para el partido.
+      </p>
+
+      <div class="player-selection-card">
+        <div class="team-header">
+          <h3 class="team-block-title" id="active-local-title">
+            <i class="fas fa-users"></i> Equipo Local
+          </h3>
+        </div>
+
+        <div class="selection-section">
+          <h4 class="selection-title">
+            <i class="fas fa-shield-alt"></i> Porteros
+          </h4>
+          <div class="checkbox-grid" id="local-gk-list"></div>
+          <div id="local-gk-counter" class="selection-counter">
+            <i class="fas fa-info-circle"></i> 0/1 porteros seleccionados
+          </div>
+        </div>
+
+        <div class="selection-section">
+          <h4 class="selection-title">
+            <i class="fas fa-running"></i> Jugadores de pista
+          </h4>
+          <div class="checkbox-grid" id="local-field-list"></div>
+          <div id="local-fld-counter" class="selection-counter">
+            <i class="fas fa-info-circle"></i> 0/4 jugadores seleccionados
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button id="back-to-1" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Volver
+          </button>
+          <button id="to-step-3" class="btn btn-primary">
+            Iniciar partido <i class="fas fa-play"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Paso 3: Partido en curso -->
+    <section id="step-3" class="card step-card hidden">
+      <h2 class="section-title">
+        <i class="fas fa-gamepad"></i> Partido en curso
+      </h2>
+      <p class="subtitle">
+        Pulsa sobre un jugador para registrar una acción. Registra estadísticas de portería abajo.
+      </p>
+
+      <!-- Scoreboard -->
+      <div class="scoreboard-card">
+        <div class="scoreboard-header">
+          <h3><i class="fas fa-trophy"></i> Marcador</h3>
+        </div>
+        <div class="scoreboard-content">
+          <div class="score-display" id="score-local">
+            <div class="team-name">Local</div>
+            <div class="team-score">0</div>
+          </div>
+          <div class="match-info">
+            <div class="info-item">
+              <i class="fas fa-clock"></i>
+              <span>Tiempo:</span>
+              <strong id="match-time">00:00</strong>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-flag"></i>
+              <span>Parte:</span>
+              <strong id="match-period">1ª</strong>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>Fecha:</span>
+              <strong id="match-date">--/--/----</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estadísticas de portería -->
+      <div class="goalkeeper-stats-card">
+        <div class="goalkeeper-header">
+          <h3><i class="fas fa-shield-alt"></i> Estadísticas de Portería</h3>
+          <div class="goalkeeper-name" id="current-goalkeeper">Portero Actual</div>
+        </div>
+        
+        <div class="goalkeeper-stats-grid">
+          <div class="stat-box">
+            <div class="stat-icon">🧤</div>
+            <div class="stat-value" id="gk-saves">0</div>
+            <div class="stat-label">Paradas</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-icon">⚽</div>
+            <div class="stat-value" id="gk-goals">0</div>
+            <div class="stat-label">Goles encajados</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-icon">📍</div>
+            <div class="stat-value" id="gk-outs">0</div>
+            <div class="stat-label">Tiros fuera</div>
+          </div>
+          <div class="stat-box highlight">
+            <div class="stat-icon">📊</div>
+            <div class="stat-value" id="gk-efficiency">0%</div>
+            <div class="stat-label">Eficacia</div>
+          </div>
+        </div>
+        
+        <div class="goalkeeper-actions">
+          <button class="goalkeeper-btn save" id="gk-save-btn">
+            <i class="fas fa-hands"></i> Parada
+          </button>
+          <button class="goalkeeper-btn against" id="gk-goal-btn">
+            <i class="fas fa-futbol"></i> Gol encajado
+          </button>
+          <button class="goalkeeper-btn out" id="gk-out-btn">
+            <i class="fas fa-external-link-alt"></i> Tiro fuera
+          </button>
+        </div>
+      </div>
+
+      <!-- Jugadores activos -->
+      <div class="players-card">
+        <div class="players-header">
+          <h3 id="match-local-title">
+            <i class="fas fa-users"></i> Equipo Local
+          </h3>
+          <button class="btn btn-change" id="change-local-players">
+            <i class="fas fa-sync-alt"></i> Cambiar jugadores
+          </button>
+        </div>
+        <div id="match-local-players" class="players-grid"></div>
+      </div>
+
+      <!-- Eventos del partido -->
+      <div class="events-card">
+        <div class="events-header">
+          <h3><i class="fas fa-history"></i> Eventos del Partido</h3>
+          <button class="btn btn-small btn-secondary" id="clear-events">
+            <i class="fas fa-trash"></i> Limpiar
+          </button>
+        </div>
+        <div class="events-list" id="events-list">
+          <div class="empty-state">
+            <i class="fas fa-clipboard-list"></i>
+            <p>No hay eventos registrados aún</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat de voz -->
+      <div class="voice-card">
+        <div class="voice-header">
+          <h3><i class="fas fa-comment-dots"></i> Comentarios de Voz</h3>
+          <div class="voice-status">
+            <span id="voice-dot" class="voice-dot"></span>
+            <span id="voice-text">Micrófono desactivado</span>
+          </div>
+        </div>
+        <div class="voice-info">
+          <i class="fas fa-info-circle"></i>
+          <span>Habla y el texto se añadirá al chat. Compatible con Chrome/Edge.</span>
+        </div>
+        <div class="chat-log" id="chat-log">
+          <div class="empty-state">
+            <i class="fas fa-microphone"></i>
+            <p>Inicia el micrófono para comenzar</p>
+          </div>
+        </div>
+        <div class="voice-actions">
+          <button class="btn btn-secondary" id="voice-toggle">
+            <i class="fas fa-microphone"></i> Iniciar voz
+          </button>
+          <button class="btn btn-secondary" id="voice-clear">
+            <i class="fas fa-trash"></i> Limpiar chat
+          </button>
+        </div>
+      </div>
+
+      <!-- Control del partido -->
+      <div class="match-controls">
+        <div class="controls-group">
+          <h4><i class="fas fa-cogs"></i> Controles del Partido</h4>
+          <div class="controls-buttons">
+            <button class="btn btn-control" id="toggle-time">
+              <i class="fas fa-pause"></i> Pausar tiempo
+            </button>
+            <button class="btn btn-control" id="reset-time">
+              <i class="fas fa-redo"></i> Reiniciar tiempo
+            </button>
+            <button class="btn btn-control" id="change-period">
+              <i class="fas fa-flag"></i> Cambiar parte
+            </button>
+          </div>
+        </div>
+
+        <div class="actions-group">
+          <h4><i class="fas fa-file-export"></i> Exportar Datos</h4>
+          <div class="actions-buttons">
+            <button class="btn btn-export" id="download-pdf">
+              <i class="fas fa-file-pdf"></i> Descargar PDF
+            </button>
+            <button class="btn btn-finish" id="finish-match">
+              <i class="fas fa-flag-checkered"></i> Finalizar Partido
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal contenedor -->
+    <div id="modal-root" class="hidden"></div>
+    
+    <!-- Mensaje de validación -->
+    <div id="validation-error" class="validation-error hidden"></div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p> Hoquei Palau solita 
+         <i class="fas fa-code"></i> con <i class="fas fa-heart"></i> Estadisticas partido</p>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
 
