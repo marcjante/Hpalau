@@ -1,3 +1,4 @@
+Nota: probando GitHub Pages
 # Delegado-HPalau
 
 Una aplicación web moderna para la gestión completa de partidos de hockey, con seguimiento de estadísticas, comentarios por voz y generación de reportes PDF profesionales.
